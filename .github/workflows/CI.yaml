@@ -1,6 +1,11 @@
 name:  CI Process
 run-name:  ${{ github.actor}} is learning Github Actions
 on:  [push]
+permissions:
+  issues: write
+  contents: write
+  pull-requests: write
+  statuses: write
 jobs:
   behave-testing:
     #Setup of simple OS of choice. i.e. Linux
