@@ -37,10 +37,26 @@ jobs:
         run:  |
           behave
 
-      - name: Create Issues
-        uses:  jayalfredprufrock/create-issues-action@v1.2.1
+      - name: create an issue
+        uses: dacbd/create-issue-action@main
         with:
-            template-path: .github/issues/**/*.md
-            labels: "automation,task"
-            assignees: "your-username"
-            github-token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ github.token }}
+          title: |
+            [${{ github.workflow }}] failed during [${{ github.event_name }}]
+          body: |
+            ## Failure Report:
+            
+            > [!IMPORTANT]
+            > Details on failed run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    
+            - Author: @${{ github.triggering_actor }}
+            - Branch: `${{ github.ref }}`
+            - Commit: ${{ github.sha }}
+            - Workflow Path: `${{ github.workflow_ref }}`
+    
+            - [ ] **Task**: Review failed run, fix the issue(s), and re-run until successful.
+    
+            > This issue was created automatically by GitHub, 
+            > through `dacbd/create-issue-action@main` action
+            > and KemingHe's contribution.
+            > **DO NOT** close this issue until resolved.
