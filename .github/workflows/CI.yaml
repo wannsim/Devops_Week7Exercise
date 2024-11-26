@@ -32,40 +32,10 @@ jobs:
         run:  |
           behave
 
-  create-issue:
-    if: ${{ failure() }}  # Only runs if the previous workflow fails
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Create Issue
-        uses: actions/github-script@v6
+      - name: Create Issues
+        uses:  jayalfredprufrock/create-issues-action@v1.2.1
         with:
-          script: |
-            const issueTitle = `Workflow Failed: ${{ github.workflow }}`;
-            const issueBody = `
-            ## Workflow Failure
-            - **Repository:** ${{ github.repository }}
-            - **Branch:** ${{ github.ref }}
-            - **Run ID:** ${{ github.run_id }}
-            - **Commit:** ${{ github.sha }}
-            
-            Please check the [workflow logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.
-            `;
-
-            const { data: issue } = await github.rest.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: issueTitle,
-              body: issueBody,
-              labels: ["bug", "workflow-failure"], // Optional labels
-            });
-
-            core.info(`Created issue #${issue.number}: ${issue.title}`);
-
-
-      
-          
-          
-    
-          
-                
+            template-path: .github/issues/**/*.md
+            labels: "automation,task"
+            assignees: "your-username"
+            github-token: ${{ secrets.GITHUB_TOKEN }}
