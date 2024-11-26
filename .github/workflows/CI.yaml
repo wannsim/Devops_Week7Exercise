@@ -22,12 +22,6 @@ jobs:
           package-name:  behave
           package-version:  '1.2.6'
           python-version:  '3.9'
-
-      - name:  Run Behave test
-        run:  |
-          behave
-          
-      
           
       #install pip
       - name: pip-install-package
@@ -39,5 +33,9 @@ jobs:
           package-version: 2.28.1
           # The python version
           python-version: 3.9
-      
+          
+      - name:  Run Behave test
+        run:  |
+          behave
+          
                 
