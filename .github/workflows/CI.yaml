@@ -19,5 +19,16 @@ jobs:
         uses: actions/setup-python@v5.3.0
         with:
           python-version:  '3.9'
-         
           
+      #install pip
+      - name: pip-install-package
+        uses: durandtibo/pip-install-package-action@v0.3.1
+        with:
+          # The package name
+          package-name: requests
+          # The package target version
+          package-version: 2.28.1
+          # The python version
+          python-version: 3.9
+      
+                
