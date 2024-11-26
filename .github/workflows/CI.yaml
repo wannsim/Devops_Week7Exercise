@@ -14,11 +14,17 @@ jobs:
       - name:  List repo
         run:  |
             ls
-      #install python
-      - name: Setup Python
-        uses: actions/setup-python@v5.3.0
-        with:
+          
+      - name:  Install Python package
+        uses:  durandtibo/pip-install-package-action@v0.3.1
+        with:  
+          package-name:  behave
+          package-version:  '1.2.6'
           python-version:  '3.9'
+
+      - name:  Run Behave test
+        run:  |
+          behave
           
       #install pip
       - name: pip-install-package
