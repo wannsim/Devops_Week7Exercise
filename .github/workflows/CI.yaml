@@ -65,14 +65,12 @@ jobs:
  
       - name: upload test results
         if: always()
-        uses: actions:/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: test-results/
     
-
-
-# Week13 - Step 6b: Send Telegram Message on failure 
+      # Week13 - Step 6b: Send Telegram Message on failure 
       - name: Send Telegram Message on Test Failure(s)
         if: failure()
         env:
