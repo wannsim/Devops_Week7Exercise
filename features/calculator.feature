@@ -4,7 +4,7 @@ Feature: calculator
     Scenario: Addition
         Given the Calculator is initialized 
         When I add 10 and 5
-        Then the result should be 9
+        Then the result should be 15
 
     Scenario: Subtration
         Given the calculator is initialized
