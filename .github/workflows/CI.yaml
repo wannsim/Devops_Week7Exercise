@@ -36,7 +36,7 @@ jobs:
       #run
       - name:  run behave test
         run:  |
-          behave
+          behave features/ --junit --junit-directory=test-results
 
       - name: create an issue
         if: failure()  # Only run this step if the job fails
