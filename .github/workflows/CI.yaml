@@ -70,7 +70,8 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          COMMIT_AUTHOR: ${{ github.actor }}
         run: |
           curl -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
           -d chat_id="${TELEGRAM_CHAT_ID}" \
-          -d text="Review failed run, fix the issue(s), and re-run until successful."  
+          -d text="The run failed. The action was triggered by: ${COMMIT_AUTHOR}. Please review the failed run, fix the issue(s), and re-run until successful."
